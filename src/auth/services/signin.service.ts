@@ -38,7 +38,7 @@ export class SigninService {
     this.cookieService.setAuthToken(res, accessToken, JwtTokenType.ACCESS);
 
     return {
-      user: { id: user.id, name: user.userName, email: user.email },
+      user: { id: user.id, userName: user.userName, email: user.email },
       message: 'Аутентифікаця успішна. Токен встановлений в cookies',
     };
   }

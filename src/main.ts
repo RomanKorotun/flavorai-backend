@@ -8,6 +8,14 @@ import { AllExceptionFilter } from './common/filters/all-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const configService = app.get(ConfigService);
+  const PORT = +configService.getOrThrow<string>('PORT');
+
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  });
+
   app.setGlobalPrefix('api');
 
   app.use(cookieParser());
@@ -21,9 +29,6 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new AllExceptionFilter());
-
-  const configService = app.get(ConfigService);
-  const PORT = +configService.getOrThrow<string>('PORT');
 
   await app.listen(PORT, () => console.log(`Server running on ${PORT} PORT`));
 }

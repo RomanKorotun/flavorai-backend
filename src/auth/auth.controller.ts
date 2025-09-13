@@ -48,6 +48,7 @@ export class AuthController {
   @Get('current')
   @HttpCode(HttpStatus.OK)
   current(@CurrentUser() user: User) {
+    console.log(user);
     return user;
   }
 

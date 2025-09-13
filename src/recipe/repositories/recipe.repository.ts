@@ -41,7 +41,7 @@ export class RecipeRepository {
         ...dto,
         imageUrl:
           dto.imageUrl ??
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+          'https://idei.club/uploads/posts/2022-11/1667292712_1-idei-club-p-dizain-kulinarii-oboi-1.jpg',
         userId,
       },
       select: {
