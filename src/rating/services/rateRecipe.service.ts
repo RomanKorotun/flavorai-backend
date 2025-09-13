@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  ForbiddenException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { RateRecipeDto } from '../../rating/dto/rate-recipe.dto';
 import { RatingRepository } from '../../rating/repositories/rating.repository';
 import { RecipeRepository } from 'src/recipe/repositories/recipe.repository';
@@ -19,10 +15,6 @@ export class RateRecipeService {
 
     if (!recipe) {
       throw new NotFoundException('Рецепт не знайдено');
-    }
-
-    if (recipe.userId === userId) {
-      throw new ForbiddenException('Не можна оцінювати власний рецепт');
     }
 
     await this.ratingRepository.upsertRating(userId, recipeId, dto.value);
